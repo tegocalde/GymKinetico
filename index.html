@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es-DO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0f14">
+  <meta name="description" content="KINÉTICO — Plataforma de terapia física y rutinas deportivas para clientes en República Dominicana.">
+  <title>KINÉTICO · Terapia Deportiva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="views.css">
+</head>
+<body>
+
+  <!-- ══════════════ ACCESO ══════════════ -->
+  <div id="loginScreen" class="login-screen">
+    <section class="login-visual" aria-label="KINÉTICO, terapia deportiva">
+      <div class="login-visual__glow" aria-hidden="true"></div>
+      <div class="brand brand--big">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none"><path d="M4 18h5l3-9 5 16 3-8h8" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span>KINÉTICO<span class="brand__dot">.</span></span>
+      </div>
+      <div class="login-visual__copy">
+        <p class="eyebrow eyebrow--light">TERAPIA DEPORTIVA · REPÚBLICA DOMINICANA</p>
+        <h1>El movimiento<br>es la <em>medicina.</em></h1>
+        <p>Evaluación, terapia manual y rutinas diseñadas para que vuelvas a hacer lo que amas — sin dolor y a tu ritmo.</p>
+        <ul class="feature-list">
+          <li>Planes por días calendario</li>
+          <li>Ejercicios con demostración en GIF</li>
+          <li>Seguimiento en tiempo real</li>
+        </ul>
+      </div>
+      <div class="login-visual__stats" aria-hidden="true">
+        <div class="float-stat"><strong>94%</strong><span>adherencia a rutinas</span></div>
+        <div class="float-stat"><strong>+320</strong><span>atletas acompañados</span></div>
+      </div>
+      <div class="rings" aria-hidden="true"><i></i><i></i><i></i></div>
+    </section>
+
+    <main class="login-panel">
+      <div class="login-card">
+        <div class="login-card__head">
+          <div class="brand brand--small">
+            <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M4 18h5l3-9 5 16 3-8h8" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>KINÉTICO<span class="brand__dot">.</span></span>
+          </div>
+          <h2>Bienvenido de vuelta</h2>
+          <p>Ingresa a tu espacio de recuperación.</p>
+        </div>
+
+        <div class="demo-switch" role="group" aria-label="Acceso rápido de demostración">
+          <button type="button" class="demo-switch__btn" data-demo="admin">
+            <span aria-hidden="true">🩺</span> Entrar como terapeuta
+          </button>
+          <button type="button" class="demo-switch__btn" data-demo="client">
+            <span aria-hidden="true">🏃</span> Entrar como cliente
+          </button>
+        </div>
+
+        <div class="divider"><span>o inicia sesión</span></div>
+
+        <form id="loginForm" novalidate>
+          <div class="field">
+            <label for="loginEmail">Correo electrónico</label>
+            <span id="emailHint" class="hint">Usa tu correo registrado</span>
+            <input id="loginEmail" name="email" type="email" required autocomplete="username" inputmode="email" spellcheck="false" enterkeyhint="next" aria-describedby="emailHint" data-error="emailError" placeholder="tu@correo.com">
+            <p id="emailError" class="error-msg" hidden><span role="img" aria-label="Error">❌</span> <span>Escribe un correo válido, por ejemplo nombre@correo.com.</span></p>
+          </div>
+          <div class="field">
+            <label for="loginPassword">Contraseña</label>
+            <span id="passwordHint" class="hint">Mínimo 6 caracteres</span>
+            <div class="password-wrap">
+              <input id="loginPassword" name="password" type="password" required minlength="6" autocomplete="current-password" enterkeyhint="go" aria-describedby="passwordHint" data-error="passwordError" placeholder="••••••••">
+              <button type="button" id="togglePassword" class="password-toggle" aria-label="Mostrar contraseña">👁</button>
+            </div>
+            <p id="passwordError" class="error-msg" hidden><span role="img" aria-label="Error">❌</span> <span>La contraseña debe tener al menos 6 caracteres.</span></p>
+          </div>
+          <label class="check-line"><input type="checkbox" id="rememberMe" checked> <span>Mantener la sesión iniciada</span></label>
+          <p id="loginError" class="form-alert" role="alert" hidden><span role="img" aria-label="Error">❌</span> <span>Correo o contraseña incorrectos.</span></p>
+          <button type="submit" class="btn btn--primary btn--full">Iniciar sesión <span aria-hidden="true">→</span></button>
+        </form>
+
+        <p class="demo-credentials"><strong>Demo:</strong> terapeuta <code>admin@kinetico.do</code> · cliente <code>cliente@kinetico.do</code> · contraseña <code>demo1234</code></p>
+      </div>
+      <p class="legal-note">Demo local · los datos se guardan solo en este navegador.</p>
+    </main>
+  </div>
+
+  <!-- ══════════════ APLICACIÓN ══════════════ -->
+  <div id="appShell" class="app-shell" hidden>
+    <aside class="sidebar">
+      <div class="brand brand--side">
+        <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M4 18h5l3-9 5 16 3-8h8" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>KINÉTICO<span class="brand__dot">.</span></span>
+      </div>
+      <nav id="sideNav" class="side-nav" aria-label="Navegación principal"></nav>
+      <div class="sidebar-foot">
+        <div id="sideUser" class="side-user"></div>
+        <button type="button" id="logoutBtn" class="btn btn--ghost btn--full">Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <div class="app-main">
+      <header class="topbar">
+        <button type="button" id="menuBtn" class="icon-btn menu-btn" aria-label="Abrir menú" aria-expanded="false">☰</button>
+        <div class="topbar__titles">
+          <p id="topbarKicker" class="eyebrow">PANEL</p>
+          <h1 id="topbarTitle">Resumen</h1>
+        </div>
+        <div class="topbar__right">
+          <div class="today-chip"><span aria-hidden="true">📅</span> <span id="todayLabel"></span></div>
+          <button type="button" id="notificationBtn" class="icon-btn" aria-label="Notificaciones">🔔<span class="dot" aria-hidden="true"></span></button>
+          <div id="topAvatar" class="avatar avatar--top" aria-hidden="true"></div>
+        </div>
+      </header>
+      <main id="viewRoot" class="view-root" tabindex="-1"></main>
+    </div>
+    <div id="navScrim" class="nav-scrim" hidden></div>
+  </div>
+
+  <!-- ══════════════ DIÁLOGOS ══════════════ -->
+  <dialog id="routineDialog" class="modal modal--wide" closedby="any" aria-labelledby="routineDialogTitle">
+    <div class="modal-head">
+      <div>
+        <p class="eyebrow">NUEVA ASIGNACIÓN</p>
+        <h2 id="routineDialogTitle">Asignar rutina</h2>
+      </div>
+      <button type="button" class="icon-btn" data-close-dialog="routineDialog" aria-label="Cerrar ventana">✕</button>
+    </div>
+    <form id="routineForm" novalidate>
+      <div class="form-grid">
+        <div class="field">
+          <label for="routineClient">Cliente</label>
+          <select id="routineClient" required></select>
+        </div>
+        <div class="field">
+          <label for="routineTitle">Nombre de la rutina</label>
+          <input id="routineTitle" type="text" required maxlength="60" placeholder="Ej.: Vuelta al running · Fase 2" value="Nueva rutina">
+        </div>
+        <div class="field">
+          <label for="routineStart">Fecha de inicio</label>
+          <input id="routineStart" type="date" required>
+        </div>
+        <div class="field">
+          <label for="routineDays">Duración (días calendario)</label>
+          <input id="routineDays" type="number" min="1" max="90" required value="21" inputmode="numeric">
+        </div>
+        <div class="field field--full">
+          <label for="routineNotes">Indicaciones para el cliente</label>
+          <textarea id="routineNotes" rows="2" maxlength="240" placeholder="Ej.: Si el dolor supera 3/10, detén y avísame."></textarea>
+        </div>
+      </div>
+
+      <div class="builder">
+        <section class="builder__library" aria-labelledby="libraryTitle">
+          <div class="builder__head">
+            <h3 id="libraryTitle">Biblioteca de ejercicios</h3>
+            <span id="libraryCount" class="count-pill"></span>
+          </div>
+          <label class="visually-hidden" for="librarySearch">Buscar ejercicio</label>
+          <input id="librarySearch" type="search" class="search-input" placeholder="Buscar por nombre o zona…">
+          <div id="libraryPicker" class="library-picker"></div>
+        </section>
+        <section class="builder__selected" aria-labelledby="selectedTitle">
+          <div class="builder__head">
+            <h3 id="selectedTitle">Secuencia asignada</h3>
+            <span id="selectedCount" class="count-pill">0 ej.</span>
+          </div>
+          <div id="selectedExercises" class="selected-list"></div>
+          <div id="routineSummary" class="builder__summary" aria-live="polite"></div>
+        </section>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn--ghost" data-close-dialog="routineDialog">Cancelar</button>
+        <button type="submit" class="btn btn--primary">Guardar y asignar <span aria-hidden="true">✓</span></button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="exerciseDialog" class="modal modal--preview" closedby="any" aria-labelledby="exerciseDialogTitle">
+    <div class="modal-head">
+      <h2 id="exerciseDialogTitle">Demostración</h2>
+      <button type="button" class="icon-btn" data-close-dialog="exerciseDialog" aria-label="Cerrar ventana">✕</button>
+    </div>
+    <div id="exercisePreview" class="exercise-preview"></div>
+    <div class="modal-actions"><button type="button" class="btn btn--ghost" data-close-dialog="exerciseDialog">Cerrar</button></div>
+  </dialog>
+
+  <dialog id="messageDialog" class="modal modal--preview" closedby="any" aria-labelledby="messageDialogTitle">
+    <div class="modal-head">
+      <h2 id="messageDialogTitle">Mensaje para tu terapeuta</h2>
+      <button type="button" class="icon-btn" data-close-dialog="messageDialog" aria-label="Cerrar ventana">✕</button>
+    </div>
+    <form id="messageForm">
+      <div class="field">
+        <label for="messageText">¿Cómo te sientes? ¿Alguna molestia?</label>
+        <textarea id="messageText" rows="5" required maxlength="500" placeholder="Cuéntame cómo respondiste a la rutina de esta semana…"></textarea>
+      </div>
+      <div class="modal-actions"><button type="submit" class="btn btn--primary">Enviar mensaje <span aria-hidden="true">→</span></button></div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
