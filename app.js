@@ -42,6 +42,7 @@ function exerciseById(id) { return EXERCISES.find((e) => e.id === id); }
 function userById(id) { return S.users.find((u) => u.id === id); }
 function gifSrc(ex) { return `assets/gifs/${ex.gif}`; }
 function pct(n, d) { return d > 0 ? Math.round((n / d) * 100) : 0; }
+function ringOffset(percent) { return (2 * Math.PI * 66 * (1 - Math.max(0, Math.min(100, percent)) / 100)).toFixed(2); }
 function activeRoutineFor(clientId) {
   const t = todayYMD();
   return S.routines.find((r) => r.clientId === clientId && r.status === 'activa' && r.startDate <= t && addDays(r.startDate, r.days - 1) >= t)
@@ -289,8 +290,13 @@ function clientToday() {
       </div>
       <div class="ring-side">
         <div class="progress-ring-wrapper">
-          <progress class="progress-ring" value="${p.percent}" max="100" style="--value:${p.percent}" aria-label="Progreso de la rutina" aria-valuetext="${p.done} de ${p.total} días completados"></progress>
-          <div class="progress-ring__content" aria-hidden="true"><strong>${p.percent}%</strong><span>completado</span></div>
+          <progress class="progress-ring" value="${p.percent}" max="100" aria-label="Progreso de la rutina" aria-valuetext="${p.done} de ${p.total} días completados"></progress>
+          <svg class="ring-svg" viewBox="0 0 160 160" aria-hidden="true" focusable="false">
+            <circle class="ring-svg__track" cx="80" cy="80" r="66"></circle>
+            <circle class="ring-svg__fill" cx="80" cy="80" r="66" style="stroke-dasharray:414.69;stroke-dashoffset:${ringOffset(p.percent)}" transform="rotate(-90 80 80)"></circle>
+            <text class="ring-svg__value" x="80" y="80" dy=".35em" text-anchor="middle">${p.percent}%</text>
+            <text class="ring-svg__label" x="80" y="104" text-anchor="middle">completado</text>
+          </svg>
         </div>
         <div class="ring-side__text"><span>Llevas</span><strong>${p.done} / ${p.total} días</strong><span>de tu plan</span></div>
       </div>

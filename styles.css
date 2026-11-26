@@ -251,48 +251,31 @@ a { color: inherit; }
 .menu-btn, .nav-scrim { display: none; }
 .view-root { flex: 1; padding: clamp(20px, 3vw, 36px); inline-size: min(100%, 1480px); margin-inline: auto; }
 
-/* ── Anillos de progreso (progress nativo) ── */
+/* ── Anillo de progreso: <progress> nativo accesible + anillo SVG sin recuadros ── */
 .progress-ring-wrapper {
-  --ring-size: 146px; --ring-thickness: 13px;
   position: relative; display: grid; place-items: center;
-  inline-size: var(--ring-size); block-size: var(--ring-size); flex: none;
+  inline-size: 146px; block-size: 146px; flex: none;
 }
 progress.progress-ring {
-  --track-color: rgba(255, 255, 255, .09); --fill-color: var(--lime);
-  position: absolute; inset: 0; margin: 0; appearance: none;
-  inline-size: 100%; block-size: 100%; border-radius: 50%;
-  border: var(--ring-thickness) solid transparent;
-  background-image: conic-gradient(from -90deg, var(--fill-color) calc(var(--value) * 1%), var(--track-color) 0);
-  background-origin: border-box; background-clip: border-area;
-  transition: --value 0s ease-in-out;
+  position: absolute; inline-size: 1px; block-size: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
 }
-@supports not (background-clip: border-area) {
-  progress.progress-ring {
-    border: 0;
-    -webkit-mask-image: radial-gradient(farthest-side, transparent calc(100% - var(--ring-thickness)), #000 calc(100% - var(--ring-thickness) + .5px));
-    mask-image: radial-gradient(farthest-side, transparent calc(100% - var(--ring-thickness)), #000 calc(100% - var(--ring-thickness) + .5px));
-  }
+.ring-svg { display: block; inline-size: 100%; block-size: 100%; overflow: visible; }
+.ring-svg__track, .ring-svg__fill { fill: none; stroke-width: 13; }
+.ring-svg__track { stroke: rgba(255, 255, 255, .09); }
+.ring-svg__fill {
+  stroke: var(--lime); stroke-linecap: round;
+  transition: stroke-dashoffset .55s cubic-bezier(.4, 0, .2, 1);
 }
-progress.progress-ring::-webkit-progress-bar,
-progress.progress-ring::-webkit-progress-value,
-progress.progress-ring::-moz-progress-bar,
-progress.progress-ring::slider-fill { display: none; background: none; }
-progress.progress-ring[value="100"] { --fill-color: var(--mint); }
-@media (prefers-reduced-motion: no-preference) {
-  progress.progress-ring { transition-duration: .55s; }
-}
+progress.progress-ring[value="100"] + .ring-svg .ring-svg__fill { stroke: var(--mint); }
+.ring-svg__value { font-family: var(--display); font-size: 35px; font-weight: 700; fill: var(--lime); letter-spacing: -1.6px; }
+.ring-svg__label { font-family: var(--font); font-size: 11px; fill: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .ring-svg__fill { transition: none; } }
 @media (forced-colors: active) {
-  progress.progress-ring { forced-color-adjust: none; --fill-color: CanvasText; --track-color: Canvas; }
+  .ring-svg__fill { stroke: CanvasText; }
+  .ring-svg__track { stroke: Canvas; }
+  .ring-svg__value, .ring-svg__label { fill: CanvasText; }
 }
-.progress-ring__content {
-  position: absolute; inset: var(--ring-thickness);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
-  border-radius: 50%; text-align: center; pointer-events: none;
-  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, .07), rgba(9, 14, 19, .88) 72%);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .05);
-}
-.progress-ring__content strong { font-family: var(--display); font-size: clamp(1.7rem, 2.4vw, 2.15rem); line-height: 1; color: var(--lime); letter-spacing: -.05em; }
-.progress-ring__content span { font-size: .62rem; color: var(--muted); line-height: 1.2; }
 
 /* ── Diálogos ── */
 dialog:modal { overscroll-behavior: contain; }
